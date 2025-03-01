@@ -1,6 +1,7 @@
 package com.backend.springboot;
 
 import com.backend.springboot.component.DemoBean;
+import com.backend.springboot.component.EmployeeBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
@@ -17,11 +18,13 @@ public class SpringbootApplication {
 
 		ApplicationContext context = SpringApplication.run(SpringbootApplication.class, args);
 
-		// Check if DemoBean is present in the context
 		String[] beanNames = context.getBeanNamesForType(DemoBean.class);
 		boolean containsBean = beanNames.length > 0;
 
 		logger.debug("Checking Context: {} ", containsBean);
+
+		EmployeeBean employeeBean = context.getBean(EmployeeBean.class);
+		employeeBean.displayEmployeeInfo();
 
 		logger.debug("**** Example Using @Autowire annotation on property ****");
 	}
